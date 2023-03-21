@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.button {
+  padding: 1rem 2rem;
+  margin: 0 1rem;
+  border-radius: 3px;
+  background-color: #9d5af4;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.button:hover {
+  background-color: #39cc18;
+}
+
+@media screen and (min-width: 600px) {
+  .auth-form-container {
+    padding: 5rem;
+    border: 1px solid white;
+    border-radius: 10px;
+  } 
+}
+
+.hey-msg { 
+  font-size: 2rem;
+  text-decoration: underline double beige;
+  align-items: center;
+  font-style: italic;
+  font-family: sans-serif;
+  margin-top: 2rem;
+}
+
+.home-action {
+  margin-left: -35rem;
+  font-size: 2.5rem;
+
+}
+   
+.d-home-action {
+  margin-left: -20rem;
+  font-size: 2.5rem;
+}
+
+.home-Title {
+  text-decoration: underline wavy pink;
+  font-size: 4rem;
+}
+
+.logout-btn {
+  background-color: black;
+  color: white;
+  padding: 1.2rem 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: .75rem;
+}
+
+.logout-btn:hover {
+  background-color: #512d51;
+}
