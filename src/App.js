@@ -1,19 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate,BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from "axios";
-import "./App.css";
-import { Login } from "./Login";
-import Register from "./Register";
-import StudentHome from "./HomeScreens/studenthome.js";
-import RestaurantHome from "./HomeScreens/restauranthome";
-import DriverHome from "./HomeScreens/driverhome";
+import "./RegisterLogin/RegisterLogin.css";
+import { LoginForm } from "./RegisterLogin/LoginForm";
+import RegisterForm from "./RegisterLogin/RegisterForm";
+import StudentHome from "./HomeScreens/StudentHome.js";
+import RestaurantHome from "./HomeScreens/RestaurantHome";
+import DriverHome from "./HomeScreens/DriverHome";
 
-
-//// USED https://www.youtube.com/watch?v=Y-XW9m8qOis TO CREATE REGISTER AND LOGIN 
-//// Used https://www.youtube.com/watch?v=Lb9Basl0StM for register and login backend
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [formType, setFormType] = useState("login");
-  const usertype = localStorage.getItem("usertype");
+  const usertype = localStorage.getItem("user_type");
 
   const handleFormSwitch = (form) => {
     setFormType(form);
@@ -21,23 +19,32 @@ function App() {
 
   return (
     <div className="App">
-      {!loggedIn ? (
+      {!loggedIn ? (     
         formType === "login" ? (
-          <Login setLoggedIn={setLoggedIn} onFormSwitch={handleFormSwitch} />
-        ) : (
-          <Register onFormSwitch={handleFormSwitch} />
+          <LoginForm setLoggedIn={setLoggedIn} onFormSwitch={handleFormSwitch} />
+        ) : (     
+          <RegisterForm onFormSwitch={handleFormSwitch} />
         )
       ) : (
-        <div className="auth-form-container">
-         {usertype === "Student" && <StudentHome setLoggedIn={setLoggedIn} />}
-         {usertype === "Restaurant" && <RestaurantHome setLoggedIn={setLoggedIn} />}
-         {usertype === "Driver" && <DriverHome setLoggedIn={setLoggedIn} />}
+  
+        <div className="auth-form-container">  
+          {usertype === "Student" && (
+            <StudentHome setLoggedIn={setLoggedIn} />
+          )}
+          {usertype === "Restaurant" && (
+            <RestaurantHome setLoggedIn={setLoggedIn}/>
+          )}
+          {usertype === "Driver" && (
+          <DriverHome setLoggedIn={setLoggedIn} />
+          )}
         </div>
-      )}
+      )
+      }
     </div>
   );
 }
 
 export default App;
+
 //// USED https://www.youtube.com/watch?v=Y-XW9m8qOis TO CREATE REGISTER AND LOGIN 
 //// Used https://www.youtube.com/watch?v=Lb9Basl0StM for register and login backend
