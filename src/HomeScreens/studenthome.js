@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import axios from 'axios';
-import Wetherspoon from "./SpoonsUni.jpg";
-import SparShop from "./sparHull.jpg";
+import Wetherspoon from "./Images/SpoonsUni.jpg"
+import SparShop from "./Images/sparHull.jpg";
+import SparMenu from './SparMenu.js';
+import SpoonsMenu from './WetherSpoonsMenu.js';
+
+
 
 //var shopOpenTime = fetchShopOpenTimes();
 //var shopCloseTime = fetchShopCloseTimes();
@@ -30,6 +34,8 @@ var hours = new Date().getHours(); //To get the Current Hours
   const handleLogout = () => {
     props.setLoggedIn(false);
   };
+
+
     
   return (
 
@@ -53,20 +59,20 @@ var hours = new Date().getHours(); //To get the Current Hours
             <div className="column">
             <div className="card">
             <img alt="Spoons" width="100%" src={SparShop} />
-              <div className="container">
+              <div>
                 <h2>Spar On-Campus</h2>
                 <p>Small shop that stocks essentials for uni life</p>
-                <p><button className="button">Menu</button></p>
+                <p><button onClick={SpoonsMenu} className="button">Menu</button></p>
               </div>
             </div>
           </div>
           <div className="column">
             <div className="card">
             <img alt="Spoons" width="100%" src={Wetherspoon} />
-              <div className="container">
+              <div>
                 <h2>Wetherspoons</h2>
                 <p>Small shop that stocks essentials for uni life</p>
-                <p><button className="button">Menu</button></p>
+                  <p><button onClick={SparMenu} className="button">Menu</button></p>
               </div>
             </div>
           </div>
