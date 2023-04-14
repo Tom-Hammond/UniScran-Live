@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import {Link, Routes} from "react-router-dom";
+import {Route} from "react-router-dom";
+import {Router} from "react-router-dom";
 import './Home.css';
 import axios from 'axios';
 import Wetherspoon from "./Images/SpoonsUni.jpg"
@@ -8,33 +11,32 @@ import SpoonsMenu from './WetherSpoonsMenu.js';
 
 
 
+
 //var shopOpenTime = fetchShopOpenTimes();
 //var shopCloseTime = fetchShopCloseTimes();
 function StudentHome(props) {
-  
-
-var hours = new Date().getHours(); //To get the Current Hours
 
 
+  // useEffect(() => {///send a request to recieve stoere close time from DB
 
-  useEffect(() => {///send a request to recieve stoere close time from DB
-
-    const fetchShopOpenShops = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3001/menu?id=${hours}`);
-        var time = response.data; 
-      } catch (error) {///return error if cannot fetch menu items 
-        console.error('Error fetching open shops:', error);
-      }
-    };
-    fetchShopOpenShops();
-  }, []);
+  //   const fetchShopOpenShops = async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:3001/menu?id=${}`);
+  //       var time = response.data; 
+  //     } catch (error) {///return error if cannot fetch menu items 
+  //       console.error('Error fetching open shops:', error);
+  //     }
+  //   };
+  //   fetchShopOpenShops();
+  // }, []);
 
 
   const handleLogout = () => {
     props.setLoggedIn(false);
   };
 
+
+ 
 
     
   return (
@@ -62,7 +64,13 @@ var hours = new Date().getHours(); //To get the Current Hours
               <div>
                 <h2>Spar On-Campus</h2>
                 <p>Small shop that stocks essentials for uni life</p>
-                <p><button onClick={SpoonsMenu} className="button">Menu</button></p>
+                <div>
+                 <Link to="/SparMenu" className="button">Spar Button</Link>
+               </div>
+                <p><button className="button">Menu</button></p>
+                
+                
+                <Link to="/SparMenu">Spar</Link>
               </div>
             </div>
           </div>
@@ -72,7 +80,7 @@ var hours = new Date().getHours(); //To get the Current Hours
               <div>
                 <h2>Wetherspoons</h2>
                 <p>Small shop that stocks essentials for uni life</p>
-                  <p><button onClick={SparMenu} className="button">Menu</button></p>
+                  <p><button className="button">Menu</button></p>
               </div>
             </div>
           </div>
@@ -85,6 +93,8 @@ var hours = new Date().getHours(); //To get the Current Hours
         </button>
       </div>
     </div>
+
+    
   );
   
 }
