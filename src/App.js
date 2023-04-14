@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate,BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useNavigate,BrowserRouter as Router, Switch } from 'react-router-dom';
 import axios from "axios";
+import { Routes, Route } from 'react-router-dom';
 import "./RegisterLogin/RegisterLogin.css";
 import { LoginForm } from "./RegisterLogin/LoginForm";
 import RegisterForm from "./RegisterLogin/RegisterForm";
 import StudentHome from "./HomeScreens/StudentHome.js";
 import RestaurantHome from "./HomeScreens/RestaurantHome";
 import DriverHome from "./HomeScreens/DriverHome";
+import SparMenu from "./HomeScreens/SparMenu";
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -17,8 +20,11 @@ function App() {
     setFormType(form);
   };
 
+
   return (
     <div className="App">
+      
+
       {!loggedIn ? (     
         formType === "login" ? (
           <LoginForm setLoggedIn={setLoggedIn} onFormSwitch={handleFormSwitch} />
@@ -40,7 +46,15 @@ function App() {
         </div>
       )
       }
+
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="SparMenu" element={<SparMenu />} />
+      </Routes>
+      
     </div>
+
+    
   );
 }
 

@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Main from '../components/Main';
 import Basket from '../components/Basket';
 
-function SparMenu(props) {
+function SparMenu() {
 
     return (
       <div className='App'>

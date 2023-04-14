@@ -139,6 +139,7 @@
   width: 80%;
   height: 60%;
   margin-bottom: 2.5%;
+  text-decoration: none;
 }
 
 .button:hover {

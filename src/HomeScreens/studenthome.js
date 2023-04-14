@@ -65,12 +65,13 @@ function StudentHome(props) {
                 <h2>Spar On-Campus</h2>
                 <p>Small shop that stocks essentials for uni life</p>
                 <div>
-                 <Link to="/SparMenu" className="button">Spar Button</Link>
+                <h1>Home page</h1>
+                <Link to="/about">About</Link>
                </div>
                 <p><button className="button">Menu</button></p>
+               
                 
                 
-                <Link to="/SparMenu">Spar</Link>
               </div>
             </div>
           </div>
