@@ -24,7 +24,7 @@ enter into terminal "node ---" (Replace --- with server.js file by right clickin
 
 
 
-## About React 
+# About React 
 
 ### Getting Started with Create React App
 
