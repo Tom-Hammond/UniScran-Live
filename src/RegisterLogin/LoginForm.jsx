@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./RegisterLogin.css";
+import { useNavigate } from "react-router-dom";
+import RegisterForm from "./RegisterForm";
 
 
 ///https://www.youtube.com/watch?v=Y-XW9m8qOis
@@ -11,6 +13,12 @@ export const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
+  
+  const navigate = useNavigate();
+
+  function registerForm() {
+    navigate(`/Register`); 
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,16 +30,17 @@ export const LoginForm = (props) => {
       if (response.data.message) {
         setLoginStatus(response.data.message);
       } else {
+        localStorage.clear();
         localStorage.setItem("userId", response.data.id);///https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
         localStorage.setItem("name", response.data.name);
         console.log(response.data.name);
         localStorage.setItem("user_type", response.data.user_type);
         localStorage.setItem("cuisine", response.data.cuisine); 
-        
-    
-        props.setLoggedIn(true);
-        console.log(response.data.user_type);
+
+      
+        window.location.reload(navigate(`/Home`));
       }
+      
     }).catch((error) => {
       console.error(error);
     });
@@ -51,6 +60,7 @@ export const LoginForm = (props) => {
           id="email"
           name="email"
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <label htmlFor="password">Password:</label>
         <input
@@ -60,13 +70,14 @@ export const LoginForm = (props) => {
           id="password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <button type="submit" className="login-btn">Login</button>
         {loginStatus && <p className="error-message">{loginStatus}</p>}
       </form>
       <button
         className="link-btn"
-        onClick={() => props.onFormSwitch("register")}
+        onClick={registerForm}
         
       >
         Don't have an account? Register here.

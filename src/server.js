@@ -3,9 +3,9 @@ const { Pool } = require("pg");
 const cors = require("cors");
 
 
-const app = express();///Create express
+const app = express();
 
-app.use(express.json());///Configure express
+app.use(express.json());
 app.use(cors()); 
 
 const pool = new Pool({/// Connect to PostgreSQL UniScranDB db to make requests
@@ -16,20 +16,19 @@ const pool = new Pool({/// Connect to PostgreSQL UniScranDB db to make requests
   port: 5432, // default PostgreSQL port
 });
 
-
   // Receive register fields from register.js and input into users db table
 app.post("/register", async (req, res) => {
-  const { email, password, name, phone, user_type, student_id_number, address, cuisine } = req.body;
+  const { email, password, name, phone, user_type, student_id_number, address, cuisine, description, image } = req.body;
 
   try {
     const result = await pool.query(
-      "INSERT INTO users (user_type, email, password, name, phone, student_id_number, address, cuisine) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
-      [user_type, email, password, name, phone, student_id_number, address, cuisine]
+      "INSERT INTO users (user_type, email, password, name, phone, student_id_number, address, cuisine, restaurant_description, restaurant_image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
+      [user_type, email, password, name, phone, student_id_number, address, cuisine, description, image]
     );
     res.json({ rowCount: result.rowCount });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Failed to insert data into the database." });
+    res.status(500).json({ message: "ERROR: Failed to insert data into the database." });
   }
 });
 
@@ -54,13 +53,12 @@ app.post('/login', (req, res) => {
 app.get('/menu', async (req, res) => {
   try {
     const {id} = req.body;
-    console.log(req.body);
     const result = await pool.query('SELECT id, item_name, item_price, image, description FROM menu WHERE restaurant_id = $1', [req.query.id]);
 
     res.send(result.rows);
   } catch (err) {
     console.error(err);
-    res.send({ message: 'Error: Failed fetching data from database.' });
+    res.send({ message: 'ERROR: Failed to fetch data from database.' });
   }
 });
 
@@ -69,7 +67,7 @@ app.post('/menu', async (req, res) => {
     const { userId, name, price, description, image } = req.body;
     console.log('a:', userId);
     const result = await pool.query(
-      'INSERT INTO menu (restaurant_id, item_name, item_price, image, description) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      'INSERT INTO menu (restaurant_id, item_name, item_price, description, image) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [ userId, name, price, description, image]
     );
 
@@ -80,7 +78,7 @@ app.post('/menu', async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    res.send({ message: 'Error: Failed inserting data into database.' });
+    res.send({ message: 'ERROR: Failed inserting data into database.' });
   }
 });
 
@@ -91,7 +89,7 @@ app.put('/menu/:id', async (req, res) => {
     const { name, price, description, image } = req.body;
     console.log('name', name,'price', price, description, image);
     const result = await pool.query(
-      'UPDATE menu SET item_name = $2, item_price = $3, image = $4, description = $5 WHERE id=$1',
+      'UPDATE menu SET item_name = $2, item_price = $3, description = $4, image = $5 WHERE id=$1',
       [ id, name, price, description, image]
     );
 
@@ -102,7 +100,7 @@ app.put('/menu/:id', async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    res.send({ message: 'Error: Failed updating data in database.' });
+    res.send({ message: 'ERROR: Failed updating data in database.' });
   }
 });
 
@@ -120,38 +118,22 @@ app.delete('/menu/:id', async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    res.send({ message: 'Error: Failed deleting data from database.' });
+    res.send({ message: 'ERROR: Failed to delete data from database.' });
   }
 });
 
-app.get('/openshops', async (req, res) => {
+app.get('/openrestaurants', async (req, res) => {
   try {
-    const {id} = req.body;
-    console.log(req.body);
-    const result = await pool.query('SELECT id, opentime FROM user WHERE restaurant_id = $1', [req.query.id]);
-
-    res.send(result.rows);
+    const result = await pool.query('SELECT id, name, cuisine, restaurant_description, restaurant_image FROM users WHERE user_type = $1', ["Restaurant"]);
+ 
+    res.send(result.rows); 
   } catch (err) {
     console.error(err);
-    res.send({ message: 'Error: Failed fetching data from database.' });
+    res.send({ message: 'ERROR: Failed to fetch data from database.' });
   }
 });
 
-app.get('/closetime', async (req, res) => {
-  try {
-    const {id} = req.body;
-    console.log(req.body);
-    const result = await pool.query('SELECT restaurant_id, name, cuisine FROM user WHERE opentime >=$1 && closetime >=$1', [req.query.id]);
-
-    res.send(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.send({ message: 'Error: Failed fetching data from database.' });
-  }
-});
-
-
-/// Listen on port 3001
+/// Listen on port 3001n
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`running backend server on port ${PORT}`);

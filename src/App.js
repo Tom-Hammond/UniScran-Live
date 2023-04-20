@@ -1,61 +1,54 @@
 import React, { useState } from "react";
 import { useNavigate,BrowserRouter as Router, Switch } from 'react-router-dom';
 import axios from "axios";
-import { Routes, Route } from 'react-router-dom';
+import {  Routes, Route } from 'react-router-dom';
 import "./RegisterLogin/RegisterLogin.css";
 import { LoginForm } from "./RegisterLogin/LoginForm";
 import RegisterForm from "./RegisterLogin/RegisterForm";
 import StudentHome from "./HomeScreens/StudentHome.js";
 import RestaurantHome from "./HomeScreens/RestaurantHome";
 import DriverHome from "./HomeScreens/DriverHome";
-import SparMenu from "./HomeScreens/SparMenu";
-
+import ViewMenu from "./Order/ManageOrder";
+import ManageDetails from "./ManageAccount.js/ManageDetails";
+import OrderHistory from "./ManageAccount.js/OrderHistory";
+import ViewBasket from "./Order/ViewBasket";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [formType, setFormType] = useState("login");
   const usertype = localStorage.getItem("user_type");
 
-  const handleFormSwitch = (form) => {
-    setFormType(form);
-  };
+  let directUserHome;
 
-
+  if (usertype === "Student") {
+    directUserHome = ( 
+   <StudentHome/>
+    );
+  }
+    if (usertype==="Restaurant")
+    {
+      directUserHome = ( 
+        <RestaurantHome/>
+         );
+    }
+    if (usertype==="Driver")
+    {
+      directUserHome = ( 
+        <DriverHome/>
+         );
+    }
+  
   return (
     <div className="App">
-      
-
-      {!loggedIn ? (     
-        formType === "login" ? (
-          <LoginForm setLoggedIn={setLoggedIn} onFormSwitch={handleFormSwitch} />
-        ) : (     
-          <RegisterForm onFormSwitch={handleFormSwitch} />
-        )
-      ) : (
-  
-        <div className="auth-form-container">  
-          {usertype === "Student" && (
-            <StudentHome setLoggedIn={setLoggedIn} />
-          )}
-          {usertype === "Restaurant" && (
-            <RestaurantHome setLoggedIn={setLoggedIn}/>
-          )}
-          {usertype === "Driver" && (
-          <DriverHome setLoggedIn={setLoggedIn} />
-          )}
+          <Routes>
+          <Route path="/" element={<LoginForm/>}/>
+          <Route path="/Register" element={<RegisterForm/>}/>
+               <Route path="/Home" element={directUserHome}  />
+               <Route path="/ViewMenu" element={<ViewMenu/>} />
+               <Route path="/ManageDetails" element={<ManageDetails/>} />
+               <Route path="/OrderHistory" element={<OrderHistory/>} />
+               <Route path="/ViewBasket" element={<ViewBasket/>} />
+        </Routes>  
         </div>
       )
-      }
-
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="SparMenu" element={<SparMenu />} />
-      </Routes>
-      
-    </div>
-
-    
-  );
 }
 
 export default App;
