@@ -1,4 +1,5 @@
-# Database install and setup
+# Getting the APP up and running
+## Database install and setup
 Requires PostGreSQL 
 Database name needs to be called UniScran 
 The following tables need to be added from createscripts.txt script 
@@ -11,7 +12,7 @@ cd my-app
 npm install
 npm start (Check it works and shows sever in internet browser)
 
-### Starting the app
+## Starting the app
 
 Open the my-app folder in VS code 
 start a new terminal 
@@ -23,13 +24,13 @@ enter into terminal "node ---" (Replace --- with server.js file by right clickin
 
 
 
-#### About React 
+## About React 
 
-# Getting Started with Create React App
+### Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
@@ -95,3 +96,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
