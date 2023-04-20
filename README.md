@@ -1,3 +1,30 @@
+# Database install and setup
+Requires PostGreSQL 
+Database name needs to be called UniScran 
+The following tables need to be added from createscripts.txt script 
+
+## Creating the React side of the app
+Create a new react app using command line iwth the following code 
+
+npx create-react-app my-app
+cd my-app
+npm install
+npm start (Check it works and shows sever in internet browser)
+
+### Starting the app
+
+Open the my-app folder in VS code 
+start a new terminal 
+enter into terminal "npm start"
+
+get another terminal by repeting steps 
+enter into terminal "node ---" (Replace --- with server.js file by right clicking and copying path)
+
+
+
+
+#### About React 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
