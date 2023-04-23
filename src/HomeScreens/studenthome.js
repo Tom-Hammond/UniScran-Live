@@ -73,6 +73,8 @@ function StudentHome(props) {
           </button>
         </div>       
       {viewRestaurants}
+      </div>
+      <div>
         <button className="logout-btn" onClick={handleLogout}>
           Logout
         </button>

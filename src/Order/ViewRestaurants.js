@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { click } from '@testing-library/user-event/dist/click';
 import ViewMenu from './ManageOrder';
-import './Order.css';
+import './ViewRestaurants.css';
 
 
 const ViewRestaurants = ({ restaurant }) => {
@@ -23,37 +23,22 @@ const ViewRestaurants = ({ restaurant }) => {
   }
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Restaurant Name</th>
-            <th>Cuisine</th>
-            <th>Description</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              {restaurantName}
-            </td>
-            <td>
-               {restaurantCuisine} 
-            </td>
-            <td>
-            {restaurantDescription} 
-            </td>
-            <td >
-            <img src={restaurantImage} className="shop-image"  />         
-               </td>
-            <td>
-              <button type="submit" className="view-menu-button" onClick={viewMenu}>
-                View Menu
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <div class="main-row">
+            <div class="main-column">
+              <div class="main-card">
+                 <img src={restaurantImage}  alt='Shop-Img' /> 
+                 <div class="main-container">
+                  <h2>{restaurantName}</h2>
+                  <p class="main-title"> {restaurantCuisine}</p>
+                  <p> {restaurantDescription} .</p>
+                  <p> <button className="main-button" onClick={viewMenu}>View Menu</button> </p>
+                </div>
+              </div>
+            </div> 
+            
+          </div>
+        
+ 
     );
   };
 
