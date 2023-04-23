@@ -24,7 +24,11 @@ enter into terminal "node ---" (Replace --- with server.js file by right clickin
 
 
 
+<<<<<<< HEAD
 ## About React 
+=======
+# About React 
+>>>>>>> 5fb9f29bdf80c72f7667dc6bc95c471abd33cea3
 
 ### Getting Started with Create React App
 
@@ -96,3 +100,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
