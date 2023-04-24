@@ -18,25 +18,38 @@ const ViewRestaurants = ({ restaurant }) => {
 
   const navigate = useNavigate();
 
+  const handleLogout = () => {///Navigate to LOGIN screen
+    localStorage.clear();
+    navigate('/');
+  };
+  
   function viewMenu() {
     navigate(`/ViewMenu?id=${restaurantId}`);
   }
 
     return (
-        <div class="main-row">
-            <div class="main-column">
-              <div class="main-card">
-                 <img src={restaurantImage}  alt='Shop-Img' /> 
-                 <div class="main-container">
-                  <h2>{restaurantName}</h2>
-                  <p class="main-title"> {restaurantCuisine}</p>
+      
+        <div className="main-row">
+            <div className="main-column">
+              <div className="main-card">
+                 <img style={{ width: 180, height: 180, paddingTop: 20 }} src={restaurantImage}  alt='Shop-Img' /> 
+                 <div className="main-container">
+                  <h2 tyle={{ fontSize: 20}}>{restaurantName}</h2>
+                  <p style={{ color: (83, 83, 83), fontSize: 20}}> {restaurantCuisine}</p>
                   <p> {restaurantDescription} .</p>
                   <p> <button className="main-button" onClick={viewMenu}>View Menu</button> </p>
                 </div>
+                <div>
               </div>
             </div> 
+            </div>
+            </div>
+    
+
+          
+                       
             
-          </div>
+          
         
  
     );
