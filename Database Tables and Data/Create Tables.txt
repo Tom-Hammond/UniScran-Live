@@ -1,0 +1,56 @@
+-- Table: public.users
+
+-- DROP TABLE IF EXISTS public.users;
+
+-- DROP SEQUENCE IF EXISTS users_id_seq;
+
+CREATE SEQUENCE users_id_seq;
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    id integer NOT NULL DEFAULT nextval('`users_id_seq`'::regclass),
+    user_type character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    phone character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    student_id_number character varying(20) COLLATE pg_catalog."default",
+    address character varying(255) COLLATE pg_catalog."default",
+    cuisine character varying(255) COLLATE pg_catalog."default",
+    openandclosetimes character varying(255) COLLATE pg_catalog."default",
+    availability character varying(255) COLLATE pg_catalog."default",
+    restaurant_description character varying(255) COLLATE pg_catalog."default",
+    restaurant_image character varying COLLATE pg_catalog."default",
+    CONSTRAINT users_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.users
+    OWNER to postgres;
+
+
+
+-- Table: public.menu
+
+-- DROP TABLE IF EXISTS public.menu;
+
+-- DROP SEQUENCE IF EXISTS restaurant_menus_id_seq;
+
+CREATE SEQUENCE restaurant_menus_id_seq;
+
+CREATE TABLE IF NOT EXISTS public.menu
+(
+    id integer NOT NULL DEFAULT nextval('restaurant_menus_id_seq'::regclass),
+    restaurant_id integer,
+    item_name character varying(255) COLLATE pg_catalog."default",
+    item_price numeric(8,2),
+    image character varying COLLATE pg_catalog."default",
+    description character varying COLLATE pg_catalog."default",
+    CONSTRAINT restaurant_menus_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.menu
+    OWNER to postgres;
