@@ -4,6 +4,8 @@ postgresql create scripts
 
 -- DROP TABLE IF EXISTS public.users;
 
+CREATE SEQUENCE users_id_seq;
+
 CREATE TABLE IF NOT EXISTS public.users
 (
     id integer NOT NULL DEFAULT 'nextval('users_id_seq'::regclass)',
