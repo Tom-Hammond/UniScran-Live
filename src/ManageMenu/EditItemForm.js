@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './ManageMenu.css';
 
+///USED AND REFACTORED <emitdlr> (<date>) <25 feb 2021> (<react js>) [<github>]. https://github.com/emitdlr/FishMenu/tree/main/src/components.
+
 const EditItemForm = ({ item, updateMenuItem, deleteMenuItem }) => {
   const [name, setName] = useState(item.item_name);
   const [price, setPrice] = useState(item.item_price);
