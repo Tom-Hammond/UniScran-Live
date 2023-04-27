@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
-const ViewMenus = ({ item, myBasket}) => {
+const ViewMenus = ({ item, setMyBasket, myBasket}) => {
   const name = useState(item.item_name);
   const price = useState(item.item_price);
   const description = useState(item.description);
   const [image] = useState(item.image);
- 
-  function addToBasket() { 
-    myBasket.push(item);
-    console.log(['id: ' + item.id, 'name: ' + item.item_name, 'price:' + item.item_price ]);
 
+
+  function addToBasket() { 
+    setMyBasket([...myBasket, item]);
   }
 
   return (
