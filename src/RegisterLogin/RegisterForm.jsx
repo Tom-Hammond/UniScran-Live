@@ -3,6 +3,9 @@ import axios from "axios";
 import "./RegisterLogin.css";
 import { useNavigate } from "react-router-dom";
 
+///TO CREATE REGISTER AND LOGIN - <Tech2 etc> (<30 Aug 2022>) <Create Login and Registration Form In React JS (Beginner)> (<React js>) [<Youtube>]. https://www.youtube.com/watch?v=Y-XW9m8qOis. 
+//// For register and login backend - <Eazy2Code> (<18 Dec 2022>) <Register and Login in React with MySQL and Node JS> (<React js>) [<Youtube>]. https://www.youtube.com/watch?v=Lb9Basl0StM.
+
 const RegisterForm = (props) => {///Set fields for registration 
   const [user, setUser] = useState("Student");
   const [email, setEmail] = useState("");
