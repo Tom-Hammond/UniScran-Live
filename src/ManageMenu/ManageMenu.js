@@ -4,6 +4,8 @@ import AddItemForm from './AddItemForm';
 import EditItemForm from './EditItemForm';
 import axios from 'axios';
 
+///USED AND REFACTORED <emitdlr> (<date>) <25 feb 2021> (<react js>) [<github>]. https://github.com/emitdlr/FishMenu/tree/main/src/components.
+
 const ManageMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
   const userId = localStorage.getItem("userId");
