@@ -4,7 +4,7 @@ import ManageMenu from "../ManageMenu/ManageMenu";
 import { useNavigate } from "react-router-dom";
 
 
-const name = localStorage.getItem("name");
+const name = localStorage.getItem("name"); ///<mozilla> (<Apr 8 2023>) <Storage: setItem() method> (<React js>) [<forum>]. https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem.
 const cuisine  = localStorage.getItem("cuisine");
 
 
