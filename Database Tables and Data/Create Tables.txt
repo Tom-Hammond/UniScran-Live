@@ -54,3 +54,36 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.menu
     OWNER to postgres;
+    
+    
+    
+ -- Table: public.orders
+
+-- DROP SEQUENCE IF EXISTS orders_id_seq;
+
+CREATE SEQUENCE orders_id_seq;
+
+-- DROP TABLE IF EXISTS public.orders;
+
+CREATE TABLE IF NOT EXISTS public.orders
+(
+    id integer NOT NULL DEFAULT 'nextval('orders_id_seq'::regclass)',
+    student_id integer NOT NULL,
+    restaurant_id integer NOT NULL,
+    driver_id integer,
+    order_items text[] COLLATE pg_catalog."default" NOT NULL,
+    status character varying(20) COLLATE pg_catalog."default",
+    created_at timestamp without time zone NOT NULL DEFAULT 'now()',
+    fulfilled_at timestamp without time zone,
+    CONSTRAINT orders_pkey PRIMARY KEY (id),
+    CONSTRAINT student_id FOREIGN KEY (student_id)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.orders
+    OWNER to postgres;
