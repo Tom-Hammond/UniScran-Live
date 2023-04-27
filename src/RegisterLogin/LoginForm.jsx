@@ -29,7 +29,7 @@ export const LoginForm = (props) => {
         setLoginStatus(response.data.message);
       } else {
         localStorage.clear();
-        localStorage.setItem("userId", response.data.id);///https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
+        localStorage.setItem("userId", response.data.id);///<mozilla> (<Apr 8 2023>) <Storage: setItem() method> (<React js>) [<forum>]. https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem.
         localStorage.setItem("name", response.data.name);
         console.log(response.data.name);
         localStorage.setItem("user_type", response.data.user_type);
