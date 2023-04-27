@@ -50,7 +50,7 @@ const ManageOrder = ( ) => {
       }, []);
       
      
-      const checkoutBasket = async () => //send a request to the server to add menu items into the menu db table 
+      const checkoutBasket = async () => //send a request to the server to add basket to orders table 
       {
         try {
           const response = await axios.post('http://localhost:3001/order', { userId, id, myBasket });
@@ -59,7 +59,7 @@ const ManageOrder = ( ) => {
             alert("Order has been sent to the restauarant.");
           }    
             } catch (error) {
-          console.error('Error:', error);//return error if cannot add menu items 
+          console.error('Error:', error);//return error if cannot add to db table
           alert('Failed to place order');
         }
       };
